@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        space: ['Space Grotesk', 'sans-serif'],
+      },
       colors: {
         'primary': '#4F46E5', // Example primary color
         'secondary': '#6366F1', // Example secondary color
