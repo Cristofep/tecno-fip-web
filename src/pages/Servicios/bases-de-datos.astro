@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Menu from '../../components/Menu.astro'
+---
+
+<Layout title="Bases-de-Datos">
+    <Menu/>
+    <!--  -->
+    <div class="w-full bg-gray-100 py-8 md:py-12 lg:py-24">
+        <section id="database" class="container space-y-6 mx-auto">
+            <div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+                <h2 class="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
+                    Soluciones en Bases de Datos
+                </h2>
+                <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                    Diseñamos, desarrollamos y optimizamos bases de datos seguras y escalables para todo tipo de proyectos tecnológicos.
+                </p>
+            </div>
+            <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-database">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M3 5v14a9 3 0 0 0 18 0V5"></path>
+                            <path d="M3 12a9 3 0 0 0 18 0"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Diseño Personalizado</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Creamos bases de datos eficientes adaptadas a las necesidades de cada proyecto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-shield-check">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Seguridad y Protección</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Implementamos medidas avanzadas de seguridad para proteger la información.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-server">
+                            <rect x="2" y="4" width="20" height="6" rx="2"></rect>
+                            <rect x="2" y="14" width="20" height="6" rx="2"></rect>
+                            <path d="M6 6h.01"></path>
+                            <path d="M6 16h.01"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Optimización y Escalabilidad</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Diseñamos estructuras eficientes para manejar grandes volúmenes de datos sin perder rendimiento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Planes -->
+    <section class="bg-slate-50 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Creación de Bases de Datos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Servicio Básico -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Básico</h3>
+                    <p class="text-gray-600 mt-2">Ideal para pequeños proyectos o emprendimientos.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Diseño de base de datos estructurada</li>
+                    <li>✔ Implementación en PostgreSQL o MySQL</li>
+                    <li>✔ Hasta 3 tablas relacionadas</li>
+                    <li>✔ Backup básico</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$50 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Servicio Avanzado -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Avanzado</h3>
+                    <p class="text-gray-600 mt-2">Para empresas y negocios en crecimiento.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Modelado de base de datos optimizado</li>
+                    <li>✔ Hasta 10 tablas con relaciones complejas</li>
+                    <li>✔ Implementación con seguridad reforzada</li>
+                    <li>✔ Backup automatizado</li>
+                    <li>✔ Soporte y mantenimiento básico</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$150 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Servicio Personalizado -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Personalizado</h3>
+                    <p class="text-gray-600 mt-2">Soluciones a medida para proyectos avanzados.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Base de datos escalable y optimizada</li>
+                    <li>✔ Integración con múltiples sistemas</li>
+                    <li>✔ Implementación avanzada en PostgreSQL, MySQL o MongoDB</li>
+                    <li>✔ Seguridad de nivel empresarial</li>
+                    <li>✔ Mantenimiento y soporte continuo</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">Precio a consultar</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</Layout>

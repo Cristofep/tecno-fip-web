@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Menu from '../../components/Menu.astro'
+---
+
+<Layout title="Plataformas-360">
+    <Menu/>
+    <div class="w-full bg-slate-50 py-8 md:py-12 lg:py-24">
+        <section id="platforms-360" class="container space-y-6 mx-auto">
+            <div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+                <h2 class="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
+                    Venta de Plataformas 360
+                </h2>
+                <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                    Ofrecemos plataformas giratorias 360° ideales para eventos, fotografía y producción de contenido.
+                </p>
+            </div>
+            <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-camera">
+                            <path d="M2 8V6a2 2 0 0 1 2-2h3.17a2 2 0 0 0 1.42-.59L10.83 2a2 2 0 0 1 1.42-.59h2.5a2 2 0 0 1 1.42.59l1.24 1.41a2 2 0 0 0 1.42.59H20a2 2 0 0 1 2 2v2"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                            <path d="M22 15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Fotografía y Video</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Captura imágenes y videos en 360° con una vista panorámica impresionante.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-users">
+                            <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M5.8 19a4 4 0 0 0-1.8-3.87"></path>
+                            <path d="M20 19a4 4 0 0 1 1.8-3.87"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Eventos y Producciones</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Ideales para bodas, fiestas y eventos corporativos, mejorando la experiencia visual.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-settings">
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Personalización</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Configuramos la plataforma según tus necesidades con luces, efectos y más.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Planes -->
+    <section class="bg-slate-50 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Cabinas 360</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Plan Básico -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Básico</h3>
+                    <p class="text-gray-600 mt-2">Cabina 360 para eventos pequeños o promocionales, ideal para fotos y videos rápidos.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Cabina 360 con cámara básica</li>
+                    <li>✔ Funcionalidad de grabación de video y fotos</li>
+                    <li>✔ Opción de personalización mínima (filtros básicos)</li>
+                    <li>✔ Entrega e instalación en el evento</li>
+                    <li>✔ Soporte técnico durante el evento</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$800 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Plan Avanzado -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Avanzado</h3>
+                    <p class="text-gray-600 mt-2">Cabina 360 para eventos medianos, con opciones de personalización y mejor calidad de grabación.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Cabina 360 con cámara de alta definición</li>
+                    <li>✔ Función de grabación de video 4K y fotos de alta calidad</li>
+                    <li>✔ Personalización avanzada (filtros, música, y efectos visuales)</li>
+                    <li>✔ Soporte técnico durante el evento</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$1,500 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Premium</h3>
+                    <p class="text-gray-600 mt-2">Cabina 360 para eventos grandes y exclusivos, con personalización completa y un nivel de calidad superior.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Cabina 360 con cámara profesional de última generación</li>
+                    <li>✔ Grabación de video 4K y fotos en resolución ultra alta</li>
+                    <li>✔ Personalización total (filtros, música, efectos, marca del evento)</li>
+                    <li>✔ Soporte técnico especializado y asesoramiento continuo</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">Precio a consultar</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</Layout>

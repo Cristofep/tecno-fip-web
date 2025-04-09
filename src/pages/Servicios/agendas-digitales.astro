@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Menu from '../../components/Menu.astro'
+---
+
+<Layout title="Agendas-Digitales">
+    <Menu/>
+    <div class="w-full bg-slate-50 py-8 md:py-12 lg:py-24">
+        <section id="digital-agendas" class="container space-y-6 mx-auto">
+            <div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+                <h2 class="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
+                    Agendas Digitales
+                </h2>
+                <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                    Desarrollamos soluciones digitales para la gestión eficiente de horarios, tareas y eventos.
+                </p>
+            </div>
+            <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-calendar">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Gestión de Eventos</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Organiza y administra reuniones, citas y recordatorios de manera intuitiva y accesible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-check-square">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Seguimiento de Tareas</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Mantén un control detallado de tus actividades diarias con listas de tareas interactivas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border bg-background p-2">
+                    <div class="flex h-[180px] flex-col justify-between rounded-md p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-bell">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <div class="space-y-2">
+                            <h3 class="font-bold">Notificaciones Inteligentes</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Recibe alertas personalizadas para nunca olvidar una cita o tarea importante.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Planes -->
+    <section class="bg-slate-50 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Agendas Digitales</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan Básico -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Básico</h3>
+                    <p class="text-gray-600 mt-2">Una solución simple para gestionar horarios y tareas de manera eficiente.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Creación de agenda digital básica con interfaz intuitiva</li>
+                    <li>✔ Funcionalidades de agregar, editar y eliminar eventos</li>
+                    <li>✔ Recordatorios por correo electrónico</li>
+                    <li>✔ Sincronización con calendarios de Google</li>
+                    <li>✔ Soporte técnico limitado por 1 mes</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$100 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Plan Avanzado -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Avanzado</h3>
+                    <p class="text-gray-600 mt-2">Para empresas que necesitan una agenda digital con más funcionalidades y personalización.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Funcionalidades avanzadas de programación de eventos y tareas</li>
+                    <li>✔ Integración con Google Calendar, Outlook y otros sistemas de gestión</li>
+                    <li>✔ Recordatorios por correo, SMS y notificaciones push</li>
+                    <li>✔ Gestión de tareas con etiquetas y prioridades</li>
+                    <li>✔ Reportes de productividad semanales</li>
+                    <li>✔ Soporte técnico por 3 meses</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">$250 USD</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+
+                <!-- Plan Personalizado -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between">
+                    <h3 class="text-xl font-semibold text-gray-700">Plan Personalizado</h3>
+                    <p class="text-gray-600 mt-2">Una solución completamente adaptada a las necesidades específicas de tu equipo o empresa.</p>
+                    <ul class="mt-4 space-y-2 text-gray-600">
+                    <li>✔ Desarrollo de una agenda digital personalizada según tus requerimientos</li>
+                    <li>✔ Integración completa con sistemas internos y plataformas específicas</li>
+                    <li>✔ Paneles de control para gestión de tareas, eventos y proyectos</li>
+                    <li>✔ Funcionalidades de colaboración entre equipos y asignación de tareas</li>
+                    <li>✔ Soporte técnico y mantenimiento continuo</li>
+                    <li>✔ Entrenamiento personalizado para los usuarios</li>
+                    </ul>
+                    <p class="text-2xl font-bold text-gray-800 mt-4">Precio a consultar</p>
+                    <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Solicitar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</Layout>
