@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Menu from '../components/Menu.astro'
+---
+
+<Layout title="Nosotros">
+    <Menu/>
+    <main class="px-4 py-10 max-w-6xl mx-auto space-y-16">
+        <section class="text-center space-y-4">
+            <h1 class="text-4xl font-bold text-gray-900">Conoce a Tecno FIP</h1>
+            <p class="text-lg text-gray-600">
+            Transformamos el futuro de las empresas con tecnología innovadora y soluciones personalizadas
+            </p>
+        </section>
+
+    <section class="grid gap-8 md:grid-cols-2">
+            <div class="bg-white shadow-md rounded-2xl p-6 border">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Nuestra Misión</h2>
+            <p class="text-gray-700">
+                En Tecno FIP, nuestra misión es proveer soluciones tecnológicas innovadoras que mejoren la eficiencia operativa
+                de las empresas y les permitan alcanzar sus objetivos estratégicos de manera más efectiva y personalizada.
+            </p>
+            </div>
+            <div class="bg-white shadow-md rounded-2xl p-6 border">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Nuestra Visión</h2>
+            <p class="text-gray-700">
+                Ser el socio tecnológico líder, reconocido por ofrecer soluciones que impulsen el crecimiento empresarial a través de
+                la innovación y sostenibilidad tecnológica.
+            </p>
+            </div>
+        </section>
+
+        <section class="space-y-6">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Nuestros Valores</h2>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="bg-white rounded-2xl shadow p-5 border">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Innovación</h3>
+                <p class="text-gray-700">Nos enfocamos en desarrollar soluciones tecnológicas avanzadas y creativas, que simplifican y mejoran la vida diaria.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow p-5 border">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Eficiencia</h3>
+                <p class="text-gray-700">Optimizamos recursos y tiempo con productos que hacen que la organización y automatización sean accesibles para todos.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow p-5 border">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Educación</h3>
+                <p class="text-gray-700">Nos apasiona compartir conocimientos y capacitar a otros en tecnología y robótica para su crecimiento personal y profesional.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow p-5 border">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Responsabilidad Social</h3>
+                <p class="text-gray-700">Creamos tecnología con un impacto positivo en la comunidad, buscando siempre el bienestar colectivo.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow p-5 border">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Colaboración</h3>
+                <p class="text-gray-700">Fomentamos el trabajo en equipo, construyendo un entorno donde cada miembro aporta al éxito de nuestros proyectos.</p>
+            </div>
+            </div>
+        </section>
+
+        <section class="text-center mt-10">
+            <a href="/servicios" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition">
+            Conoce Nuestros Servicios
+            </a>
+        </section>
+    </main>
+</Layout>
