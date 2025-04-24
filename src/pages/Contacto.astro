@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Menu from '../components/Menu.astro'
+import Formulario from '../components/FormularioContacto.astro'
 ---
 
 <Layout title="Contacto">
@@ -26,31 +27,7 @@ import Menu from '../components/Menu.astro'
                 </div>
             </div>
             <div class="flex flex-wrap">
-                <form class="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-                    <div class="mb-3 w-full">
-                        <label class="block font-medium mb-[2px] text-teal-700">
-                                Nombre
-                        </label>
-                        <input type="text" class="px-2 py-2 border w-full outline-none rounded-md" id="exampleInput90" placeholder="Nombre" />
-                    </div>
-                    <div class="mb-3 w-full">
-                        <label class="block font-medium mb-[2px] text-teal-700" >
-                            Correo electrónico
-                        </label>
-                        <input type="email" class="px-2 py-2 border w-full outline-none rounded-md" id="exampleInput90"
-                                placeholder="Introduce tu dirección de correo electrónico" />
-                    </div>
-                    <div class="mb-3 w-full">
-                        <label class="block font-medium mb-[2px] text-teal-700" >
-                            Mensaje
-                        </label>
-                        <textarea class="px-2 py-2 border rounded-[5px] w-full outline-none" name="" id=""></textarea>
-                    </div>
-                    <button type="button"
-                            class="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500">
-                            Enviar
-                    </button>
-                </form>
+                <Formulario/>
                 <div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
                     <div class="flex flex-wrap">
                         <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">

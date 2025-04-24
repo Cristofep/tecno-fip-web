@@ -1,0 +1,42 @@
+<form id="form-contacto" class="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
+  <div class="mb-3 w-full">
+    <label class="block font-medium mb-[2px] text-teal-700">Nombre</label>
+      <input type="text" name="nombre" class="px-2 py-2 border w-full outline-none rounded-md" placeholder="Tu nombre" required />
+  </div>
+  <div class="mb-3 w-full">
+    <label class="block font-medium mb-[2px] text-teal-700" >Correo electrónico</label>
+    <input type="email" name="correo" class="px-2 py-2 border w-full outline-none rounded-md" placeholder="Tu correo" required />
+  </div>
+  <div class="mb-3 w-full">
+    <label class="block font-medium mb-[2px] text-teal-700" >Mensaje</label>
+      <textarea name="mensaje" class="px-2 py-2 border rounded-[5px] w-full outline-none" placeholder="Tu mensaje" required></textarea>
+  </div>
+
+  <button type="submit" class="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500">Enviar</button>
+</form>
+
+<script type="module">
+  import { supabase } from '../../public/lib/supabase'
+
+  const form = document.getElementById('form-contacto')
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const nombre = form.nombre.value
+    const correo = form.correo.value
+    const mensaje = form.mensaje.value
+
+    const { data, error } = await supabase
+      .from('contactanos')
+      .insert([{ nombre, correo, mensaje }])
+
+    if (error) {
+      alert('❌ Error al enviar el mensaje.')
+      console.error(error)
+    } else {
+      alert('✅ ¡Mensaje enviado!')
+      form.reset()
+    }
+  })
+</script>
