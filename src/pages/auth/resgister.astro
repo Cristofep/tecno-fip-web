@@ -1,0 +1,155 @@
+---
+import Layout from "../../layouts/Layout.astro"
+---
+
+<Layout title="Registro">
+  <div class="flex items-center justify-center min-h-screen p-4 bg-gradient-to-r from-indigo-800 to-blue-900">
+    <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in">
+      <h2 class="text-2xl font-bold text-center text-indigo-800 mb-8">Crear una Cuenta</h2>
+
+      <form id="registrationForm" class="space-y-6" novalidate>
+        <div>
+          <label for="username" class="block text-indigo-900 font-semibold mb-2">Nombre de Usuario</label>
+          <input
+            type="text"
+            id="username"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
+            placeholder="Introduce tu nombre de usuario"
+            required
+          />
+          <p class="text-red-500 text-sm mt-2 hidden" id="usernameError">El nombre de usuario es obligatorio.</p>
+        </div>
+
+        <div>
+          <label for="email" class="block text-indigo-900 font-semibold mb-2">Correo Electrónico</label>
+          <input
+            type="email"
+            id="email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
+            placeholder="Introduce tu correo electrónico"
+            required
+          />
+          <p class="text-red-500 text-sm mt-2 hidden" id="emailError">Por favor, introduce un correo electrónico válido.</p>
+        </div>
+
+        <div>
+          <label for="password" class="block text-indigo-900 font-semibold mb-2">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
+            placeholder="Introduce tu contraseña"
+            required
+          />
+          <p class="text-red-500 text-sm mt-2 hidden" id="passwordError">La contraseña es obligatoria.</p>
+        </div>
+
+        <div>
+          <label for="confirm-password" class="block text-indigo-900 font-semibold mb-2">Confirmar Contraseña</label>
+          <input
+            type="password"
+            id="confirm-password"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
+            placeholder="Confirma tu contraseña"
+            required
+          />
+          <p class="text-red-500 text-sm mt-2 hidden" id="confirmPasswordError">Las contraseñas no coinciden.</p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-indigo-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105"
+        >
+          Registrarse
+        </button>
+      </form>
+
+      <p class="text-center text-gray-600 mt-6">
+        ¿Ya tienes una cuenta?
+        <a href="#" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Iniciar sesión</a>
+      </p>
+    </div>
+  </div>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+  </style>
+
+  <script is:inline>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      let isValid = true;
+
+      const username = document.getElementById('username');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const confirmPassword = document.getElementById('confirm-password');
+
+      if (!username.value.trim()) {
+        showError('usernameError');
+        markInvalid(username);
+        isValid = false;
+      }
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!email.value.trim() || !emailPattern.test(email.value.trim())) {
+        showError('emailError');
+        markInvalid(email);
+        isValid = false;
+      }
+
+      if (!password.value) {
+        showError('passwordError');
+        markInvalid(password);
+        isValid = false;
+      }
+
+      if (password.value !== confirmPassword.value) {
+        showError('confirmPasswordError');
+        markInvalid(confirmPassword);
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert('¡Formulario enviado exitosamente!');
+        form.reset();
+        clearInvalidStyles();
+      }
+    });
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => {
+        hideError(`${input.id}Error`);
+        input.classList.remove('border-red-500');
+      });
+    });
+
+    function showError(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function hideError(id) {
+      const errorElement = document.getElementById(id);
+      if (errorElement) {
+        errorElement.classList.add('hidden');
+      }
+    }
+
+    function markInvalid(input) {
+      input.classList.add('border-red-500');
+    }
+
+    function clearInvalidStyles() {
+      document.querySelectorAll('input').forEach(input => input.classList.remove('border-red-500'));
+      document.querySelectorAll('.text-red-500').forEach(error => error.classList.add('hidden'));
+    }
+  </script>
+</Layout>
