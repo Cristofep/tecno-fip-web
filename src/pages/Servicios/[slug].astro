@@ -60,12 +60,19 @@ if (!servicioData) {
                   Lo que incluye
                 </h3>
                 <ul role="list" class="mt-4 space-y-3">
-                  {plan.incluye.map((item) => (
+                  {(
+                    Array.isArray(plan.incluye)
+                      ? plan.incluye
+                      : typeof plan.incluye === "string"
+                      ? plan.incluye.split(",")
+                      : []
+                  ).map((item) => (
                     <li key={item} class="flex space-x-3">
                       <img src="/img/check.png" alt="Check" class="h-5 w-5" />
-                      <span class="text-base text-slate-700">{item}</span>
+                      <span class="text-base text-slate-700">{item.trim()}</span>
                     </li>
                   ))}
+
                 </ul>
               </div>
             </div>
