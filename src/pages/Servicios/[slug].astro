@@ -1,0 +1,77 @@
+---
+// src/pages/servicios/[slug].astro
+import { obtenerServicioYPlanes } from "../../js/services";
+import Layout from "../../layouts/Layout.astro";
+import Menu from "../../components/Menu.astro";
+
+const { slug } = Astro.params;
+const servicioData = await obtenerServicioYPlanes(slug);
+
+if (!servicioData) {
+  throw new Error("Servicio no encontrado");
+}
+---
+
+<Layout title={servicioData.servicio.nombre}>
+  <Menu />
+
+  <div class="bg-blue-50 p-8 rounded-lg">
+    <h1
+      class="text-5xl font-extrabold text-gray-900 mb-6 text-center tracking-tight"
+    >
+      {servicioData.servicio.nombre}
+    </h1>
+
+    <p
+      class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
+    >
+      {servicioData.servicio.descripcion}
+    </p>
+
+    <section class="bg-gray-100 p-8 rounded-xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+          servicioData.planes.map((plan) => (
+            <div
+              key={plan.id}
+              class="border border-slate-200 rounded-xl shadow-lg transform hover:scale-105 transition duration-300"
+            >
+              <div class="p-6 bg-white rounded-t-xl">
+                <h2 class="text-xl leading-6 font-bold text-slate-900">
+                  {plan.plan}
+                </h2>
+                <p class="mt-2 text-base text-slate-700 leading-tight">
+                  {plan.descripcion}
+                </p>
+                <p class="mt-8">
+                  <span class="text-4xl font-bold text-slate-900 tracking-tighter">
+                    ${plan.precio}
+                  </span>
+                </p>
+                <a
+                  href={`Compra/${plan.id}`}
+                  class="mt-8 block w-full bg-slate-900 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-slate-700 transition duration-200"
+                >
+                  Solicitar {plan.plan}
+                </a>
+              </div>
+              <div class="pt-6 pb-8 px-6 bg-slate-50 rounded-b-xl">
+                <h3 class="text-sm font-bold text-slate-900 tracking-wide uppercase">
+                  Lo que incluye
+                </h3>
+                <ul role="list" class="mt-4 space-y-3">
+                  {plan.incluye.map((item) => (
+                    <li key={item} class="flex space-x-3">
+                      <img src="/img/check.png" alt="Check" class="h-5 w-5" />
+                      <span class="text-base text-slate-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Layout>

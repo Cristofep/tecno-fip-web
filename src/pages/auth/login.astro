@@ -1,23 +1,50 @@
 ---
-import Layout from "../../layouts/Layout.astro"
+import Layout from "../../layouts/Layout.astro";
+import Menu from "../../components/Menu.astro";
+import { supabase } from '../../../public/lib/supabase';
+
+// Verifica si el método es POST (formulario de login)
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  const correo = formData.get('email');
+  const password = formData.get('password');
+
+  // Consulta la base de datos para obtener el id del usuario
+  const { data, error } = await supabase
+    .from('usuario')
+    .select('id, nombre')
+    .eq('correo', correo)
+    .eq('password', password)
+    .single();
+
+  if (data && !error) {
+    const userId = data.id;
+    const username = data.nombre;
+    return Astro.redirect(`/auth/login?setStorage=true&id=${userId}&nombre=${encodeURIComponent(username)}`);
+  } else {
+    // Si hay un error o el usuario no existe
+    return Astro.redirect('/auth/login'); // O muestra un mensaje de error
+  }
+}
 ---
 
 <Layout title="Iniciar Sesión">
+  <Menu/>
   <div class="flex items-center justify-center min-h-screen p-4 bg-gradient-to-r from-indigo-800 to-blue-900">
     <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in">
       <h2 class="text-2xl font-bold text-center text-indigo-800 mb-8">Iniciar Sesión</h2>
 
-      <form id="loginForm" class="space-y-6" novalidate>
+      <form method="POST" class="space-y-6" novalidate>
         <div>
           <label for="email" class="block text-indigo-900 font-semibold mb-2">Correo Electrónico</label>
           <input
             type="email"
             id="email"
+            name="email"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
             placeholder="Introduce tu correo electrónico"
             required
           />
-          <p class="text-red-500 text-sm mt-2 hidden" id="emailError">Por favor, introduce un correo electrónico válido.</p>
         </div>
 
         <div>
@@ -25,11 +52,11 @@ import Layout from "../../layouts/Layout.astro"
           <input
             type="password"
             id="password"
+            name="password"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-800 transition-all duration-300"
             placeholder="Introduce tu contraseña"
             required
           />
-          <p class="text-red-500 text-sm mt-2 hidden" id="passwordError">La contraseña es obligatoria.</p>
         </div>
 
         <button
@@ -42,7 +69,7 @@ import Layout from "../../layouts/Layout.astro"
 
       <p class="text-center text-gray-600 mt-6">
         ¿No tienes una cuenta?
-        <a href="#" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Regístrate</a>
+        <a href="/auth/register" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Regístrate</a>
       </p>
     </div>
   </div>
@@ -56,62 +83,21 @@ import Layout from "../../layouts/Layout.astro"
       animation: fadeIn 0.5s ease-out forwards;
     }
   </style>
-
-  <script is:inline>
-    const form = document.getElementById('loginForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      let isValid = true;
-
-      const email = document.getElementById('email');
-      const password = document.getElementById('password');
-
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!email.value.trim() || !emailPattern.test(email.value.trim())) {
-        showError('emailError');
-        markInvalid(email);
-        isValid = false;
+  <script is:client="load">
+    const params = new URLSearchParams(window.location.search);
+  
+    if (params.get("setStorage") === "true") {
+      const userId = params.get("id");
+      const username = params.get("nombre");
+  
+      if (userId && username) {
+        localStorage.setItem("usuario_id", userId);
+        localStorage.setItem("nombre_usuario", username);
+  
+        // Limpiar la URL y redirigir al panel
+        window.location.replace(`/usuario/${userId}`);
       }
-
-      if (!password.value) {
-        showError('passwordError');
-        markInvalid(password);
-        isValid = false;
-      }
-
-      if (isValid) {
-        alert('Inicio de sesión exitoso (simulado)');
-        form.reset();
-        clearInvalidStyles();
-      }
-    });
-
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', () => {
-        hideError(`${input.id}Error`);
-        input.classList.remove('border-red-500');
-      });
-    });
-
-    function showError(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-
-    function hideError(id) {
-      const errorElement = document.getElementById(id);
-      if (errorElement) {
-        errorElement.classList.add('hidden');
-      }
-    }
-
-    function markInvalid(input) {
-      input.classList.add('border-red-500');
-    }
-
-    function clearInvalidStyles() {
-      document.querySelectorAll('input').forEach(input => input.classList.remove('border-red-500'));
-      document.querySelectorAll('.text-red-500').forEach(error => error.classList.add('hidden'));
     }
   </script>
+  
 </Layout>

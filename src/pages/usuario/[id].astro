@@ -1,0 +1,198 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Menu from "../../components/Menu.astro";
+import { supabase } from '../../../public/lib/supabase';
+
+let usuario = null;
+let comprobante_pago = null;
+
+// Obtener el ID del usuario desde la URL
+const { id } = Astro.params;
+
+// Obtener datos del usuario
+const { data: user, error: userError } = await supabase
+  .from('usuario')
+  .select('*')
+  .eq('id', id)
+  .single();
+
+if (user) usuario = user;
+
+// Obtener historial de servicios y pagos
+const fetchUserData = async (userId) => {
+  const { data: servicios, error: serviciosError } = await supabase
+    .from('comprobante_pago')
+    .select('nombre_servicio, plan, fecha_hora, precio')
+    .eq('usuario_id', userId)
+    .order('fecha_hora', { ascending: false });
+
+  const { data: pagos, error: pagosError } = await supabase
+    .from('comprobante_pago')
+    .select('numero_pago, fecha_hora, metodo_pago, precio')
+    .eq('usuario_id', userId)
+    .order('fecha_hora', { ascending: false });
+
+  if (servicios && pagos) {
+    comprobante_pago = { servicios, pagos };
+  }
+
+  return { servicios, pagos, serviciosError, pagosError };
+};
+
+const { servicios, pagos, serviciosError, pagosError } = await fetchUserData(id);
+---
+
+<Layout title={`Perfil de ${usuario?.nombre}`}>
+  <Menu />
+  <main class="max-w-5xl mx-auto px-6 py-8 text-gray-800 space-y-12 bg-white rounded-3xl shadow-xl mt-6">
+
+    <!-- Datos del Usuario -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-blue-700">👤 Datos del Usuario</h2>
+      {usuario ? (
+        <div class="space-y-2">
+          <p><span class="font-semibold text-gray-600">Nombre:</span> {usuario?.nombre}</p>
+          <p><span class="font-semibold text-gray-600">Correo:</span> {usuario?.correo}</p>
+          <p><span class="font-semibold text-gray-600">Fecha de Creación:</span> {new Date(usuario?.fecha_creacion).toLocaleDateString()}</p>
+        </div>
+      ) : (
+        <p class="text-red-600">No se encontró el usuario.</p>
+      )}
+    </section>
+
+    <hr class="border-gray-300" />
+
+    <!-- Historial de Servicios -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-blue-700">🛠️ Historial de Servicios</h2>
+      {serviciosError ? (
+        <p class="text-red-600">Error al cargar los servicios.</p>
+      ) : (
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {servicios?.map((servicio) => (
+            <li key={servicio.fecha_hora} class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <p><strong>Servicio:</strong> {servicio.nombre_servicio}</p>
+              <p><strong>Plan:</strong> {servicio.plan}</p>
+              <p><strong>Fecha:</strong> {new Date(servicio.fecha_hora).toLocaleDateString()}</p>
+              <p><strong>Precio:</strong> ${servicio.precio}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+
+    <hr class="border-gray-300" />
+
+    <!-- Comprobantes de Pago -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-blue-700">💳 Comprobantes de Pago</h2>
+      {pagosError ? (
+        <p class="text-red-600">Error al cargar los pagos.</p>
+      ) : (
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left border rounded-lg overflow-hidden">
+            <thead class="bg-blue-100 text-blue-900">
+              <tr>
+                <th class="py-2 px-4">#</th>
+                <th class="py-2 px-4">Fecha</th>
+                <th class="py-2 px-4">Método</th>
+                <th class="py-2 px-4">Monto</th>
+                <th class="py-2 px-4">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pagos?.map((pago) => (
+                <tr key={pago.numero_pago} class="border-t hover:bg-gray-50">
+                  <td class="py-2 px-4">{pago.numero_pago}</td>
+                  <td class="py-2 px-4">{new Date(pago.fecha_hora).toLocaleDateString()}</td>
+                  <td class="py-2 px-4">{pago.metodo_pago}</td>
+                  <td class="py-2 px-4">${pago.precio}</td>
+                  <td class="py-2 px-4">
+                    <a href={`/comprobante/${pago.numero_pago}`} class="text-blue-600 hover:underline font-medium">Ver</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+
+    <hr class="border-gray-300" />
+
+    <!-- Editar Datos Personales -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-blue-700">✏️ Editar Datos Personales</h2>
+      <form id="editUserForm" class="space-y-4" onsubmit="handleEditUser(event)">
+        <div>
+          <label class="block mb-1 text-sm font-medium">Nombre</label>
+          <input type="text" id="username" value={usuario?.nombre} class="w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:ring focus:ring-blue-200" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Correo</label>
+          <input type="email" id="email" value={usuario?.correo} class="w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:ring focus:ring-blue-200" />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Contraseña</label>
+          <input type="password" id="password" value={usuario?.password} placeholder="••••••••" class="w-full border border-gray-300 px-3 py-2 rounded-md shadow-sm focus:ring focus:ring-blue-200" />
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 shadow-md">
+          Guardar Cambios
+        </button>
+      </form>
+    </section>
+
+    <!-- Cerrar sesión -->
+    <section class="text-right">
+      <button id="logout-button" class="bg-red-500 text-white px-6 py-2 font-semibold rounded-md hover:bg-red-600 shadow-md">
+        Cerrar Sesión
+      </button>
+    </section>
+
+  </main>
+
+  <script type="module">
+    import { supabase } from '../../../public/lib/supabase';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('editUserForm');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const id = localStorage.getItem('usuario_id');
+        if (!id) return alert("No se encontró el ID del usuario");
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const { error } = await supabase
+          .from('usuario')
+          .update({
+            nombre: username,
+            correo: email,
+            password: password
+          })
+          .eq('id', id); // UUID como string
+
+        if (error) {
+          alert("Error al actualizar los datos: " + error.message);
+        } else {
+          localStorage.setItem("nombre_usuario", username); // ✅ Actualizar localStorage
+          alert("¡Datos actualizados!");
+          location.reload();
+        }
+      });
+    });
+    document.getElementById('logout-button').addEventListener('click', () => {
+    // Elimina los datos del localStorage
+    localStorage.removeItem('usuario_id');
+    localStorage.removeItem('nombre_usuario');
+
+    // Redirige al usuario al login o página de inicio
+    window.location.href = '/auth/login'; // O la URL de la página que desees
+  });
+    
+  </script>
+</Layout>

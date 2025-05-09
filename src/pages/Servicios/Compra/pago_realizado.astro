@@ -1,0 +1,30 @@
+---
+import Ticket from '../../../layouts/Ticket.astro';
+
+const url = new URL(Astro.request.url);
+const numeroPago = url.searchParams.get('numero_pago');
+---
+
+<Ticket title="Pago realizado">
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="container p-6 bg-white rounded-lg shadow-lg max-w-md text-center">
+      <h1 class="text-2xl font-bold text-green-600 mb-4">¡Compra realizada con éxito!</h1>
+      <p class="text-gray-700 mb-6">Gracias por tu compra. Tu comprobante ha sido generado correctamente.</p>
+
+      {numeroPago ? (
+        <p class="text-gray-600 mb-4"><strong>Número de comprobante: #</strong>{numeroPago}</p>
+      ) : (
+        <p class="text-red-600 mb-4">No se encontró el número de comprobante.</p>
+      )}
+
+      <div class="flex justify-center gap-4">
+        <a href="/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Ir a inicio</a>
+        {numeroPago && (
+          <a href={`/comprobante/${numeroPago}`} class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+            Ver comprobante
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</Ticket>

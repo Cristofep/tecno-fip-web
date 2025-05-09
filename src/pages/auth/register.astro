@@ -1,8 +1,11 @@
 ---
-import Layout from "../../layouts/Layout.astro"
+import Layout from "../../layouts/Layout.astro";
+import Menu from "../../components/Menu.astro";
+// import { supabase } from '../../../public/lib/supabase';
 ---
 
 <Layout title="Registro">
+  <Menu />
   <div class="flex items-center justify-center min-h-screen p-4 bg-gradient-to-r from-indigo-800 to-blue-900">
     <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in">
       <h2 class="text-2xl font-bold text-center text-indigo-800 mb-8">Crear una Cuenta</h2>
@@ -66,7 +69,7 @@ import Layout from "../../layouts/Layout.astro"
 
       <p class="text-center text-gray-600 mt-6">
         ¿Ya tienes una cuenta?
-        <a href="#" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Iniciar sesión</a>
+        <a href="/auth/login" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Iniciar sesión</a>
       </p>
     </div>
   </div>
@@ -81,10 +84,12 @@ import Layout from "../../layouts/Layout.astro"
     }
   </style>
 
-  <script is:inline>
+  <script type="module" is:inline>
+    import { supabase } from '../../../public/lib/supabase';
+
     const form = document.getElementById('registrationForm');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', async function(event) {
       event.preventDefault();
       let isValid = true;
 
@@ -93,6 +98,7 @@ import Layout from "../../layouts/Layout.astro"
       const password = document.getElementById('password');
       const confirmPassword = document.getElementById('confirm-password');
 
+      // Validaciones
       if (!username.value.trim()) {
         showError('usernameError');
         markInvalid(username);
@@ -118,13 +124,34 @@ import Layout from "../../layouts/Layout.astro"
         isValid = false;
       }
 
+      // Enviar a Supabase si todo es válido
       if (isValid) {
-        alert('¡Formulario enviado exitosamente!');
-        form.reset();
-        clearInvalidStyles();
+        const { data, error } = await supabase
+          .from('usuario')
+          .insert([
+            {
+              nombre: username.value.trim(),
+              correo: email.value.trim(),
+              password: password.value // ⚠️ En producción, cifra la contraseña
+            }
+          ])
+          .select('id') // Obtener el ID
+          .single();
+
+        if (error) {
+          alert('Error al registrar: ' + error.message);
+        } else {
+            const userId = data.id;
+            localStorage.setItem('usuario_id', userId);
+            localStorage.setItem('nombre_usuario', username.value.trim());
+            window.location.href = `/usuario/${userId}`;
+
+        }
+
       }
     });
 
+    // Funciones de ayuda para mostrar/ocultar errores
     document.querySelectorAll('input').forEach(input => {
       input.addEventListener('input', () => {
         hideError(`${input.id}Error`);
@@ -145,11 +172,6 @@ import Layout from "../../layouts/Layout.astro"
 
     function markInvalid(input) {
       input.classList.add('border-red-500');
-    }
-
-    function clearInvalidStyles() {
-      document.querySelectorAll('input').forEach(input => input.classList.remove('border-red-500'));
-      document.querySelectorAll('.text-red-500').forEach(error => error.classList.add('hidden'));
     }
   </script>
 </Layout>

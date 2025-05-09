@@ -1,0 +1,91 @@
+---
+import Ticket from '../../layouts/Ticket.astro';
+import { supabase } from '../../../public/lib/supabase';
+
+const { id } = Astro.params;
+
+const { data, error } = await supabase
+  .from('comprobante_pago')
+  .select('*')
+  .eq('numero_pago', id)
+  .single();
+
+if (error || !data) {
+  throw new Error(`Comprobante no encontrado para el ID: ${id}`);
+}
+
+const fechaHora = new Date(data.fecha_hora).toLocaleString('es-ES', {
+  day: '2-digit', month: 'long', year: 'numeric',
+  hour: '2-digit', minute: '2-digit'
+});
+---
+
+<Ticket title={`Comprobante de Pago #${data.numero_pago}`}>
+
+  <div class="w-full flex justify-center p-10">
+    <a href="/" class="bg-red-600 hover:bg-red-700 text-white text-lg font-bold px-6 py-3 rounded-lg shadow-lg">
+      🔙 Salir
+    </a>
+  </div>
+
+  <div id="comprobante" class="max-w-md mx-auto p-4 bg-white border border-gray-300 shadow text-xs font-mono">
+    <div class="text-center border-b border-dashed border-gray-400 pb-2 mb-2">
+      <h2 class="text-base font-bold">TECNO FIP</h2>
+      <p class="uppercase tracking-wide">Comprobante de Pago</p>
+    </div>
+
+    <p><strong>Número de Pago:</strong> #{data.numero_pago}</p>
+    <p><strong>Fecha y Hora:</strong> {fechaHora}</p>
+
+    <div class="border-t border-dashed border-gray-300 my-2"></div>
+
+    <p class="text-center font-bold">INFORMACIÓN DEL CLIENTE</p>
+    <p>👤 {data.cliente_nombre}</p>
+    <p>📧 {data.cliente_correo}</p>
+
+    <div class="border-t border-dashed border-gray-300 my-2"></div>
+
+    <p class="text-center font-bold">DETALLES DEL SERVICIO</p>
+    <p>🧾 Servicio: {data.nombre_servicio}</p>
+    <p>📦 Plan: {data.plan}</p>
+    <p>💵 Precio: ${data.precio} USD</p>
+    <p>📌 Incluye:</p>
+    <ul class="list-disc list-inside ml-2">
+      {data.incluye.map((item) => (
+        <li>✓ {item}</li>
+      ))}
+    </ul>
+
+    <div class="border-t border-dashed border-gray-300 my-2"></div>
+
+    <p class="text-center font-bold">MÉTODO DE PAGO</p>
+    <p>💳 {data.metodo_pago}</p>
+
+    <div class="border-t border-dashed border-gray-300 my-2"></div>
+
+    <p class="text-center font-bold">RESUMEN DEL PAGO</p>
+    <table class="w-full text-left">
+      <tr>
+        <td>Servicio</td>
+        <td class="text-right">${data.precio} USD</td>
+      </tr>
+      <tr>
+        <td>Impuestos</td>
+        <td class="text-right">$0 USD</td>
+      </tr>
+      <tr class="font-bold border-t border-gray-300">
+        <td>Total</td>
+        <td class="text-right">${data.precio} USD</td>
+      </tr>
+    </table>
+
+    <div class="border-t border-dashed border-gray-300 my-2"></div>
+
+    <div class="text-center text-sm mt-2">
+      <p>✅ Gracias por tu compra</p>
+      <p>📩 Revisa tu correo para más detalles</p>
+      <p>📞 Contacto disponible para cualquier duda</p>
+    </div>
+  </div>
+  <br>
+</Ticket>

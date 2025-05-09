@@ -1,65 +1,69 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro'
+import Menu from '../components/Menu.astro';
+import { equipo, valores } from '../js/nosotrosData';
 ---
 
 <Layout title="Nosotros">
-    <Menu/>
-    <main class="px-4 py-10 max-w-6xl mx-auto space-y-16">
-        <section class="text-center space-y-4">
-            <h1 class="text-4xl font-bold text-gray-900">Conoce a Tecno FIP</h1>
-            <p class="text-lg text-gray-600">
-            Transformamos el futuro de las empresas con tecnología innovadora y soluciones personalizadas
-            </p>
-        </section>
+<Menu />
+<main class="bg-blue-50 px-6 py-12 max-w-7xl mx-auto space-y-20">
+    <!-- Hero -->
+    <section class="text-center space-y-5">
+        <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">
+        Conoce a <span class="text-blue-600">Tecno FIP</span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Transformamos el futuro de las empresas con tecnología innovadora y soluciones personalizadas.
+        </p>
+    </section>
 
-    <section class="grid gap-8 md:grid-cols-2">
-            <div class="bg-white shadow-md rounded-2xl p-6 border">
-            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Nuestra Misión</h2>
-            <p class="text-gray-700">
-                En Tecno FIP, nuestra misión es proveer soluciones tecnológicas innovadoras que mejoren la eficiencia operativa
-                de las empresas y les permitan alcanzar sus objetivos estratégicos de manera más efectiva y personalizada.
+    <!-- Misión y Visión -->
+    <section class="grid gap-10 md:grid-cols-2">
+        <div class="bg-gradient-to-br from-white to-blue-50 shadow-lg rounded-3xl p-8 border border-blue-100">
+            <h2 class="text-3xl font-bold text-blue-700 mb-4">Nuestra Misión</h2>
+            <p class="text-gray-700 text-lg leading-relaxed">
+            Proveer soluciones tecnológicas innovadoras que mejoren la eficiencia operativa de las empresas y les permitan alcanzar sus objetivos estratégicos de manera más efectiva y personalizada.
             </p>
-            </div>
-            <div class="bg-white shadow-md rounded-2xl p-6 border">
-            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Nuestra Visión</h2>
-            <p class="text-gray-700">
-                Ser el socio tecnológico líder, reconocido por ofrecer soluciones que impulsen el crecimiento empresarial a través de
-                la innovación y sostenibilidad tecnológica.
+        </div>
+        <div class="bg-gradient-to-br from-white to-blue-50 shadow-lg rounded-3xl p-8 border border-blue-100">
+            <h2 class="text-3xl font-bold text-blue-700 mb-4">Nuestra Visión</h2>
+            <p class="text-gray-700 text-lg leading-relaxed">
+                Ser el socio tecnológico líder, reconocido por ofrecer soluciones que impulsen el crecimiento empresarial a través de la innovación y sostenibilidad tecnológica.
             </p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="space-y-6">
-            <h2 class="text-3xl font-bold text-gray-800 text-center">Nuestros Valores</h2>
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="bg-white rounded-2xl shadow p-5 border">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Innovación</h3>
-                <p class="text-gray-700">Nos enfocamos en desarrollar soluciones tecnológicas avanzadas y creativas, que simplifican y mejoran la vida diaria.</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow p-5 border">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Eficiencia</h3>
-                <p class="text-gray-700">Optimizamos recursos y tiempo con productos que hacen que la organización y automatización sean accesibles para todos.</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow p-5 border">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Educación</h3>
-                <p class="text-gray-700">Nos apasiona compartir conocimientos y capacitar a otros en tecnología y robótica para su crecimiento personal y profesional.</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow p-5 border">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Responsabilidad Social</h3>
-                <p class="text-gray-700">Creamos tecnología con un impacto positivo en la comunidad, buscando siempre el bienestar colectivo.</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow p-5 border">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Colaboración</h3>
-                <p class="text-gray-700">Fomentamos el trabajo en equipo, construyendo un entorno donde cada miembro aporta al éxito de nuestros proyectos.</p>
-            </div>
-            </div>
-        </section>
+    <!-- Valores -->
+    <section class="space-y-10">
+        <h2 class="text-4xl font-bold text-center text-gray-800">Nuestros Valores</h2>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {valores.map(({ title, desc }) => (
+            <article class="bg-white border border-gray-100 rounded-3xl shadow-md p-6 hover:shadow-xl transition duration-300 ease-in-out">
+                <h3 class="text-2xl font-semibold text-indigo-600 mb-2">{title}</h3>
+                <p class="text-gray-700 text-base leading-relaxed">{desc}</p>
+            </article>
+            ))}
+        </div>
+    </section>
 
-        <section class="text-center mt-10">
-            <a href="/servicios" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition">
+    <!-- CTA -->
+    <section class="text-center">
+        <a href="/Servicios" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg transition">
             Conoce Nuestros Servicios
-            </a>
-        </section>
-    </main>
+        </a>
+    </section>
+    <!-- Equipo -->
+    <section class="space-y-10">
+        <h2 class="text-4xl font-bold text-center text-gray-800">Nuestro Equipo</h2>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {equipo.map(({ nombre, rol, imagen }) => (
+            <div class="bg-white border border-gray-100 rounded-3xl shadow-md p-6 text-center space-y-4 hover:shadow-xl transition">
+                <img src={imagen} alt={nombre} class="w-32 h-32 mx-auto rounded-full object-cover border-4 border-blue-100 shadow" />
+                <h3 class="text-xl font-semibold text-gray-900">{nombre}</h3>
+                <p class="text-blue-600 font-medium">{rol}</p>
+            </div>
+            ))}
+        </div>
+</section>
+</main>
 </Layout>
