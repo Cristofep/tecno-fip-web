@@ -25,7 +25,7 @@ export const equipo = [
 },
 {
     nombre: "Cesar Ricardo",
-    imagen: "img/equipo/no_foto.png",
+    imagen: "img/equipo/cesar.jpg",
 },
 {
     nombre: "Alexander Espinal",
