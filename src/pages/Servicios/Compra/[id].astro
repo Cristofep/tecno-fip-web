@@ -39,8 +39,16 @@ try {
         <p class="text-gray-600"><strong>Plan:</strong> {servicio.plan}</p>
         <p class="text-gray-600"><strong>Qué incluye:</strong></p>
         <ul class="list-disc pl-5 mb-4">
-          {servicio.incluye.map((item, index) => (
-            <li key={index} class="text-gray-600">{item}</li>
+        {(
+            Array.isArray(servicio.incluye)
+              ? servicio.incluye
+              : typeof servicio.incluye === "string"
+              ? servicio.incluye.split(",")
+              : []
+          ).map((item, index) => (
+            <li key={index} class="flex space-x-3">
+              <span class="text-base text-slate-700">{item.trim()}</span>
+            </li>
           ))}
         </ul>
         <p class="text-lg font-bold text-gray-800"><strong>Precio:</strong> ${servicio.precio}</p>

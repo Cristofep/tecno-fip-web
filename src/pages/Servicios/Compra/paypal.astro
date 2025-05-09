@@ -66,60 +66,62 @@ try {
       const random = Math.floor(Math.random() * 900 + 100);
       return `${yyyymmdd}${random}`;
     }
-
     btnPaypal.addEventListener('click', async () => {
       const usuario_id = localStorage.getItem("usuario_id");
 
-      if (!usuario_id) {
-        alert("No se encontró el usuario. Por favor, inicia sesión.");
-        return;
-      }
-
-      const { data: usuario, error: errorUsuario } = await supabase
-        .from('usuario')
-        .select('nombre, correo')
-        .eq('id', usuario_id)
-        .single();
-
-      if (errorUsuario) {
-        alert("Error al obtener datos del usuario: " + errorUsuario.message);
-        return;
-      }
-
-      const { data: servicio, error: errorServicio } = await supabase
-        .from('planes_servicios')
-        .select('nombre_servicio, plan, precio, incluye')
-        .eq('id', id)
-        .single();
-
-      if (errorServicio) {
-        alert("Error al obtener datos del servicio: " + errorServicio.message);
-        return;
-      }
-
-      const numero_pago = generarNumeroPago();
-
-      const { error: insertError } = await supabase.from('comprobante_pago').insert({
-        numero_pago,
-        cliente_nombre: usuario.nombre,
-        cliente_correo: usuario.correo,
-        nombre_servicio: servicio.nombre_servicio,
-        plan: servicio.plan,
-        incluye: servicio.incluye,
-        precio: servicio.precio,
-        metodo_pago: "PayPal",
-        usuario_id,
-      });
-
-      if (insertError) {
-        alert("Error al guardar el comprobante: " + insertError.message);
-        return;
-      }
-
-      alert("¡Pago registrado con éxito! Serás redirigido a PayPal.");
-
-      // Simula redirección a PayPal (reemplaza por tu enlace real)
-      window.location.href = `/Servicios/Compra/pago_realizado?numero_pago=${numero_pago}`;
+    if (!usuario_id) {
+      alert("No se encontró el usuario. Por favor, inicia sesión.");
+      return;
+    }
+  
+    const { data: usuario, error: errorUsuario } = await supabase
+      .from('usuario')
+      .select('nombre, correo')
+      .eq('id', usuario_id)
+      .single();
+  
+    if (errorUsuario) {
+      alert("Error al obtener datos del usuario: " + errorUsuario.message);
+      return;
+    }
+  
+    const { data: servicio, error: errorServicio } = await supabase
+      .from('planes_servicios')
+      .select('nombre_servicio, plan, precio, incluye')
+      .eq('id', id)
+      .single();
+  
+    if (errorServicio) {
+      alert("Error al obtener datos del servicio: " + errorServicio.message);
+      return;
+    }
+  
+    const numero_pago = generarNumeroPago();
+  
+    // Convertir el campo 'incluye' en un array si es una cadena separada por comas
+    const incluyeArray = typeof servicio.incluye === 'string' ? servicio.incluye.split(',').map(item => item.trim()) : servicio.incluye;
+  
+    const { error: insertError } = await supabase.from('comprobante_pago').insert({
+      numero_pago,
+      cliente_nombre: usuario.nombre,
+      cliente_correo: usuario.correo,
+      nombre_servicio: servicio.nombre_servicio,
+      plan: servicio.plan,
+      incluye: incluyeArray,  // Aquí pasamos el array correctamente
+      precio: servicio.precio,
+      metodo_pago: "PayPal",
+      usuario_id,
+    });
+  
+    if (insertError) {
+      alert("Error al guardar el comprobante: " + insertError.message);
+      return;
+    }
+  
+    alert("¡Pago registrado con éxito! Serás redirigido a PayPal.");
+  
+    // Simula redirección a PayPal (reemplaza por tu enlace real)
+    window.location.href = `/Servicios/Compra/pago_realizado?numero_pago=${numero_pago}`;
     });
   </script>
 </Layout>

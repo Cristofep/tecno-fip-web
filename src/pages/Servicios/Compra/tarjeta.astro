@@ -70,7 +70,6 @@ if (!id) {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
-
     function generarNumeroPago() {
       const fecha = new Date();
       const yyyymmdd = fecha.toISOString().slice(0, 10).replace(/-/g, '');
@@ -115,22 +114,22 @@ if (!id) {
       const cliente_correo = usuario.correo;
 
       const { data: planes, error: planesError } = await supabase
-      .from('planes_servicios')
-      .select('nombre_servicio, plan, precio, incluye')
-      .eq('id', id)
-      .single();
+        .from('planes_servicios')
+        .select('nombre_servicio, plan, precio, incluye')
+        .eq('id', id)
+        .single();
 
       if (planesError) {
         alert("Error al obtener datos del planes_servicios: " + planesError.message);
         return;
       }
 
-// Usar los datos del servicio que ya cargamos
+      // Formatear 'incluye' como un array
+      const incluyeArray = planes.incluye.split(',').map(item => item.trim());
+
       const nombre_servicio = planes.nombre_servicio;
       const plan = planes.plan;
       const precio = planes.precio;
-      const incluye = planes.incluye; // Puedes actualizar esto si es dinámico
-
 
       const numero_pago = generarNumeroPago();
 
@@ -141,7 +140,7 @@ if (!id) {
         cliente_correo,
         nombre_servicio,
         plan,
-        incluye,
+        incluye: incluyeArray,  // Pasar el array de incluye
         precio,
         metodo_pago: "Tarjeta",
         usuario_id,
@@ -153,7 +152,6 @@ if (!id) {
       } else {
         alert("¡Pago registrado con éxito!");
         window.location.href = `/Servicios/Compra/pago_realizado?numero_pago=${numero_pago}`;
-
       }
     });
   </script>
