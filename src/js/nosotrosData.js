@@ -1,18 +1,55 @@
 export const equipo = [
 {
     nombre: "Cristofer Suárez",
-    rol: "Desarrollador Web y Gestor de Bases de Datos",
-    imagen: "/equipo/cristofer.jpg",
+    imagen: "img/equipo/cristofer.jpg",
 },
 {
     nombre: "Yukimi Ortiz",
-    rol: "Asistente Técnica y Coordinadora de Proyectos",
-    imagen: "/equipo/yukimi.jpg",
+    imagen: "img/equipo/yukimi.jpg",
 },
 {
     nombre: "Brailin Ramírez",
-    rol: "Soporte Técnico y Diseño de Productos",
-    imagen: "/equipo/brailin.jpg",
+    imagen: "img/equipo/brailin.jpg",
+},
+{
+    nombre: "Benjamin Ureña",
+    imagen: "img/equipo/benjamin.jpg",
+},
+{
+    nombre: "Angel Miguel",
+    imagen: "img/equipo/angel.jpg",
+},
+{
+    nombre: "Alexander Luna",
+    imagen: "img/equipo/no_foto.png",
+},
+{
+    nombre: "Cesar Ricardo",
+    imagen: "img/equipo/no_foto.png",
+},
+{
+    nombre: "Alexander Espinal",
+    imagen: "img/equipo/alexanderE.jpg",
+},
+{
+    nombre: "Deibison ",
+    imagen: "img/equipo/deibison.jpg",
+},
+{
+    nombre: "Joule Angel",
+    imagen: "img/equipo/joule.jpg",
+},
+{
+    nombre: "Alba Iris",
+    imagen: "img/equipo/alba iris.jpg",
+},
+{
+    nombre: "Eimy Brito",
+    imagen: "img/equipo/eimy.jpg",
+},
+{
+    nombre: "Adolfo Mata",
+    imagen: "img/equipo/adolfo.jpg",
 },
 ];
 

@@ -1,7 +1,7 @@
 const usuarioId = localStorage.getItem("usuario_id");
 
 if (!usuarioId) {
-  window.location.href = "/auth/resgister";
+  window.location.href = "/auth/register";
 }
 
 document.addEventListener('DOMContentLoaded', function() {

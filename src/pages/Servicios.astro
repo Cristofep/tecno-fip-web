@@ -23,104 +23,106 @@ import Menu from '../components/Menu.astro'
           Nuestros Servicios
         </h2>
 
-        <!-- Grid de tarjetas -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
-          <!-- Tarjeta 1 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-              src="/img/base-de-datos.png"
-              alt="Icono de base de datos"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Creación de Bases de Datos</h2>
-            <p class="text-gray-700 mb-4">
-              Diseñamos y desarrollamos bases de datos robustas y seguras para tus necesidades empresariales.
-            </p>
-            <a href="/Servicios/creacion-bases-de-datos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-          </div>
 
-          <!-- Tarjeta 2 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-              src="/img/proceso-automatizado.png"
-              alt="Icono de automatización"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Automatización de Procesos</h2>
-            <p class="text-gray-700 mb-4">
-              Optimiza tus tareas repetitivas y mejora la eficiencia operativa con nuestras soluciones de automatización.
-            </p>
-            <a href="/Servicios/automatizacion-de-procesos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-          </div>
+<!-- Grid de tarjetas -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+  <!-- Tarjeta 1: Bases de Datos -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/base-de-datos.png"
+      alt="Icono de base de datos"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Creación de Bases de Datos</h2>
+    <p class="text-gray-700 mb-4">
+      Diseñamos y desarrollamos bases de datos robustas y seguras para tus necesidades empresariales.
+    </p>
+    <a href="/Servicios/creacion-bases-de-datos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
 
-          <!-- Tarjeta 3 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-              src="/img/sitio-web.png"
-              alt="Icono de desarrollo web"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Creación de Páginas Web</h2>
-            <p class="text-gray-700 mb-4">
-              Desarrollamos páginas web modernas y funcionales que destacan en la era digital.
-            </p>
-            <a href="/Servicios/creacion-de-paginas-web" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-        </div>
+  <!-- Tarjeta 2: Automatización -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/proceso-automatizado.png"
+      alt="Icono de automatización de procesos"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Automatización de Procesos</h2>
+    <p class="text-gray-700 mb-4">
+      Optimiza tus tareas repetitivas y mejora la eficiencia operativa con nuestras soluciones de automatización.
+    </p>
+    <a href="/Servicios/automatizacion-de-procesos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
 
-          <!-- Tarjeta 4 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-              src="/img/tira-de-pelicula.png"
-              alt="Icono de agendas digitales"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Cabinas 360</h2>
-            <p class="text-gray-700 mb-4">
-              Plataformas giratorias para eventos y soluciones empresariales integrales.
-            </p>
-            <a href="/Servicios/venta-y-alquiler-de-cabinas-360" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-          </div>
+  <!-- Tarjeta 3: Páginas Web -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/sitio-web.png"
+      alt="Icono de desarrollo web"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Creación de Páginas Web</h2>
+    <p class="text-gray-700 mb-4">
+      Desarrollamos páginas web modernas y funcionales que destacan en la era digital.
+    </p>
+    <a href="/Servicios/creacion-de-paginas-web" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
 
-          <!-- Tarjeta 5 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-              src="/img/proceso-automatizado.png"
-              alt="Icono de plataformas 360"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Fabricación de Productos Tecnológicos</h2>
-            <p class="text-gray-700 mb-4">
-              Diseñamos y fabricamos dispositivos innovadores utilizando tecnologías de robótica.
-            </p>
-            <a href="/Servicios/fabricacion-de-productos-tecnologicos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-          </div>
+  <!-- Tarjeta 4: Cabinas 360 -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/tira-de-pelicula.png"
+      alt="Icono de cabina 360"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Cabinas 360</h2>
+    <p class="text-gray-700 mb-4">
+      Plataformas giratorias para eventos y soluciones empresariales integrales.
+    </p>
+    <a href="/Servicios/venta-y-alquiler-de-cabinas-360" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
 
-          <!-- Tarjeta 6 -->
-          <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
-            <img
-            src="/img/proceso-automatizado.png"
-              alt="Icono de productos-tecnologicos"
-              class="mx-auto mb-4 w-16 h-16"
-            />
-            <h2 class="text-blue-700 font-bold text-lg mb-2">Instalación de Equipos Domóticos</h2>
-            <p class="text-gray-700 mb-4">
-              Instalación de sistemas automatizados para el hogar o negocio, mejorando la eficiencia energética y el control remoto de dispositivos.
-            </p>
-            <a href="/Servicios/instalacion-de-equipos-domoticos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
-              Más Información
-            </a>
-          </div>
-      </div>
+  <!-- Tarjeta 5: Productos Tecnológicos -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/proceso-automatizado.png"
+      alt="Icono de fabricación de productos tecnológicos"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Fabricación de Productos Tecnológicos</h2>
+    <p class="text-gray-700 mb-4">
+      Diseñamos y fabricamos dispositivos innovadores utilizando tecnologías de robótica.
+    </p>
+    <a href="/Servicios/fabricacion-de-productos-tecnologicos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
+
+  <!-- Tarjeta 6: Domótica -->
+  <div class="bg-white rounded-xl shadow-md p-6 text-center max-w-xs">
+    <img
+      src="/img/domotica-inteligente.png"
+      alt="Icono de instalación de equipos domóticos"
+      class="mx-auto mb-4 w-16 h-16"
+    />
+    <h2 class="text-blue-700 font-bold text-lg mb-2">Instalación de Equipos Domóticos</h2>
+    <p class="text-gray-700 mb-4">
+      Instalación de sistemas automatizados para el hogar o negocio, mejorando la eficiencia energética y el control remoto de dispositivos.
+    </p>
+    <a href="/Servicios/instalacion-de-equipos-domoticos" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+      Más Información
+    </a>
+  </div>
+</div>
+
     </section>
 
 
